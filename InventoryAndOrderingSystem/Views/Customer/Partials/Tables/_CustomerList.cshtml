@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<InventoryAndOrderingSystem.Models.CustomerModels.CustomerModel>
+<table class="table" id="CustomerListTable">
+    <thead>
+        <tr>
+            <th class="text-center">Username</th>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center">Date Created</th>
+            <th class="text-center">Date Updated</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Name</td>
+                <td>@user.DateCreated.ToShortDateString()</td>
+                <td>@(user.DateUpdated.ToShortDateString() == "1/1/0001" ? "" : user.DateUpdated.ToShortDateString())</td>
+                <td>
+                    <button class="btn btn-info" type="button" data-toggle="modal" data-target="#ModalCustomer" onclick="ShowEditCustomerDetail(parseInt(@user.CustomerID))">EDIT</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" type="button" onclick="DeleteCustomer(parseInt(@user.CustomerID))">REMOVE</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

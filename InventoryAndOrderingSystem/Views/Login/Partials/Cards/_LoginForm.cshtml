@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model InventoryAndOrderingSystem.Models.LoginModels.LoginModel
+<form asp-controller="Login" asp-action="Login" method="post">
+    <h5 class="card-title">Login Form</h5>
+    <hr />
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" id="txtUsername" asp-for="Username" required>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" id="txtPassword" asp-for="Password" required>
+    </div>
+    <div class="form-now">
+        <div class="form-group col-md-8 offset-md-2">
+            <button type="submit" class="btn btn-login btn-primary btn-block">Login</button>
+        </div>
+    </div>
+</form>

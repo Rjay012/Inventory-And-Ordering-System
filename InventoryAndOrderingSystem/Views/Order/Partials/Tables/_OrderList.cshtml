@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<InventoryAndOrderingSystem.Models.OrderModels.OrderModel>
+<table class="table" id="OrderListTable">
+    <thead>
+        <tr>
+            <th class="text-center">Product</th>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center">Shipping Address</th>
+            <th class="text-center">Delivery Date</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Amount</th>
+            <th class="text-center">Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <p>@item.ProductName</p>
+                    <p>Order Number: <span>@item.OrderID</span></p>
+                    <p>Price: <span>@String.Format("{0:C}", item.Price)</span></p>
+                </td>
+                <td>@item.CustomerName</td>
+                <td>@item.ShippingAddress</td>
+                <td>
+                    @if(Convert.ToDateTime(item.DeliveryDate).ToShortDateString() != "1/1/0001")
+                    {
+                        @Convert.ToDateTime(item.DeliveryDate).ToShortDateString()
+                    }
+                </td>
+                <td>@item.Quantity</td>
+                <td>@String.Format("{0:C}", item.Price * item.Quantity)</td>
+                <td>@item.Status</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="DropdownOrderAction" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @(item.Status != "on process" ? "disabled" : "")>
+                            Action
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="DropdownOrderAction">
+                            <a class="dropdown-item" href="#" id="BtnOrderDeliveryDetail" OrderID="@item.OrderID" data-toggle="modal" data-target="#ModalOrder">Accept</a>
+                            <a class="dropdown-item" href="#" onclick="RejectCustomerOrder(parseInt(@item.OrderID), parseInt(@item.ProductID), parseInt(@item.Quantity))">Reject</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-danger" type="button" id="BtnDeleteOrder" OrderID="@item.OrderID" Status="@item.Status">REMOVE</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

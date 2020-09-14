@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<InventoryAndOrderingSystem.Models.OrderModels.OrderModel>
+<div class="modal-header">
+    <h5 class="modal-title">Order Items</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">Order Number</th>
+                <th class="text-center">Product</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Delivery Date</th>
+                <th class="text-center">Delivery Address</th>
+                <th class="text-center">Total Amount</th>
+                <th class="text-center">Status</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderID</td>
+                    <td>@item.ProductName</td>
+                    <td>@String.Format("{0:C}", item.Price)</td>
+                    <td>@item.Quantity</td>
+                    <td>
+                        @if (Convert.ToDateTime(item.DeliveryDate).ToShortDateString() != "1/1/0001")
+                        {
+                            @Convert.ToDateTime(item.DeliveryDate).ToShortDateString()
+                        }
+                    </td>
+                    <td>@item.ShippingAddress</td>
+                    <td>@String.Format("{0:C}", item.Price * item.Quantity)</td>
+                    <td>@item.Status</td>
+                    <td>
+                        <button class="btn btn-danger" type="button" onclick="CancelOrder(parseInt(@item.OrderID), parseInt(@item.ProductID), parseInt(@item.Quantity))" @(item.Status != "on process" ? "disabled" : "")>CANCEL</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

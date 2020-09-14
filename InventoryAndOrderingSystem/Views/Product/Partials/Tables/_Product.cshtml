@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<InventoryAndOrderingSystem.Models.ProductModels.ProductModel>
+<table class="table" id="ProductListTableRender">
+    <thead>
+        <tr>
+            <th class="text-center">Product</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Date Created</th>
+            <th class="text-center">Date Updated</th>
+            <th class="text-center">Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+                <td>@item.DateCreated.ToShortDateString()</td>
+                <td>@item.DateUpdated.ToShortDateString()</td>
+                <td>@item.Description</td>
+                <td>
+                    <button class="btn btn-info" type="button" data-toggle="modal" data-target="#ModalProduct" onclick="ShowEditProductDetail(parseInt(@item.ProductID))">EDIT</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" type="button" onclick="Delete(parseInt(@item.ProductID))">REMOVE</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

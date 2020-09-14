@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200912191307_ApplyNullableProperty.cs" />
+    <Compile Remove="Migrations\20200912191307_ApplyNullableProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200912191506_UpdateDeliveryDateAsNullable.cs" />
+    <Compile Remove="Migrations\20200912191506_UpdateDeliveryDateAsNullable.Designer.cs" />
+    <Compile Remove="Migrations\20200912203519_OrderDetailFKRemovedRequiredAttrib.cs" />
+    <Compile Remove="Migrations\20200912203519_OrderDetailFKRemovedRequiredAttrib.Designer.cs" />
+    <Compile Remove="Migrations\20200913005224_ChangeSPUpdateEntity.cs" />
+    <Compile Remove="Migrations\20200913005224_ChangeSPUpdateEntity.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.foundation.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\jquery.dataTables.js" />
+    <None Include="wwwroot\DataTables-1.10.21\js\jquery.dataTables.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+</Project>

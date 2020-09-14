@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders</h1>
+
+<div class="container">
+    <div id="CustomerOrderList">
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" modal-sm role="document">
+        <div class="modal-content" id="ModalOrderContent">
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/Order.js"></script>
+}

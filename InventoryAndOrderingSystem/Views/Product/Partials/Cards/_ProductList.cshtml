@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<InventoryAndOrderingSystem.Models.ProductModels.ProductModel>
+
+<div class="row mt-5">
+    @foreach (var item in Model)
+    {
+        <div class="col mb-4">
+            <div class="card" style="width: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@item.ProductName</h5>
+                    <hr />
+                    <p class="card-text">Price: <span class="float-right">@String.Format("{0:C}", item.Price)</span></p>
+                    <p class="card-text">Quantity: <span class="float-right">@(item.Quantity != 0 ? item.Quantity.ToString() : "Out of Stock")</span></p>
+                    <p class="text-center">
+                        <button class="btn btn-primary" type="button" id="BtnOrderItem" ProductID="@item.ProductID" data-toggle="modal" data-target="#ModalOrderItem" @(item.Quantity == 0 ? "disabled" : "")>
+                            ORDER
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

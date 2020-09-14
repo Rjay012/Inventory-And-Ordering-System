@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model InventoryAndOrderingSystem.Models.CustomerModels.CustomerModel
+<form asp-controller="Customer" asp-action="Create" method="post" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-complete="ShowListingCustomer">
+    <div class="modal-header">
+        <h5 class="modal-title">Add Customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <label>Username: </label>
+        <input class="form-control" type="text" asp-for="Username" />
+        <label>Name: </label>
+        <input class="form-control" type="text" asp-for="Name" />
+        <label>Password: </label>
+        <input class="form-control" type="password" id="txtPassword" asp-for="Password" />
+        <label>Confirm Password: </label>
+        <input class="form-control" type="password" id="txtConfirmPassword" />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="d-none" id="BtnConfirmAddCustomer"></button>
+        <button type="button" class="btn btn-primary" id="BtnAddCustomer">Save changes</button>
+    </div>
+</form>

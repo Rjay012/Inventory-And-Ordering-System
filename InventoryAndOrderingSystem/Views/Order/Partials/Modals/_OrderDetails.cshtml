@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model InventoryAndOrderingSystem.Models.OrderModels.OrderModel
+<form method="post" asp-controller="Order" asp-action="Create" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-success="ShowProductList" data-ajax-complete="ShowProductList">
+    <div class="modal-header">
+        <h5 class="modal-title">Order Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <input class="form-control" type="hidden" asp-for="ProductID" />
+        <input class="form-control" type="hidden" asp-for="Price" />
+        <input class="form-control" type="hidden" asp-for="TotalQuantity" />
+        <label>Enter Quantity (@Model.TotalQuantity item(s): </label>
+        <input class="form-control" type="number" id="txtOrderQuantity" asp-for="Quantity" min="1" max="@Model.TotalQuantity" />
+        <label>Enter Shipping Address: </label>
+        <input class="form-control" type="text" asp-for="ShippingAddress" />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="BtnOrder">Save changes</button>
+    </div>
+</form>

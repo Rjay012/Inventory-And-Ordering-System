@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="form-inline">
+    <h1>Products</h1>
+    <button class="btn btn-success offset-9" id="BtnShowModalAddProduct" type="button" data-toggle="modal" data-target="#ModalProduct">Add Product</button>
+</div>
+<hr />
+<div class="container">
+    <div id="ProductListTable">
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="ModalProductContent">
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/Product.js"></script>
+}

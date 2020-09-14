@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="form-inline">
+    <h1>Customers</h1>
+    <button class="btn btn-success offset-8" id="BtnShowModalAddCustomer" type="button" data-toggle="modal" data-target="#ModalCustomer">Add Customer</button>
+</div>
+<hr />
+
+<div class="container">
+    <div id="CustomerList">
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="ModalCustomerContent">
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/Customer.js"></script>
+}
