@@ -75,22 +75,39 @@ namespace InventoryAndOrderingSystem.Services.OrderServices
             return _orderRepository.ChangeStatus(orderModel);
         }
 
-        public List<OrderModel> ListingOrder()
+        public List<OrderModel> ListingOrder(int columnIndx, string order)
         {
-            return _orderRepository.ListingOrder()
-                                   .Select(s => new OrderModel
-                                   {
-                                       OrderID = s.OrderID,
-                                       ProductID = s.Order.Product.ProductID,
-                                       CustomerName = s.Order.User.Name,
-                                       ProductName = s.Order.Product.ProductName,
-                                       Price = s.Price,
-                                       Quantity = s.Quantity,
-                                       DeliveryDate = s.Order.DeliveryDate,
-                                       ShippingAddress = s.Order.ShipingAddress,
-                                       Status = s.Order.Status
-                                   })
-                                   .ToList();
+            List<OrderModel> orderModels = _orderRepository.ListingOrder()
+                                                           .Select(s => new OrderModel
+                                                           {
+                                                               OrderID = s.OrderID,
+                                                               ProductID = s.Order.Product.ProductID,
+                                                               CustomerName = s.Order.User.Name,
+                                                               ProductName = s.Order.Product.ProductName,
+                                                               Price = s.Price,
+                                                               Quantity = s.Quantity,
+                                                               DeliveryDate = s.Order.DeliveryDate,
+                                                               ShippingAddress = s.Order.ShipingAddress,
+                                                               Status = s.Order.Status
+                                                           })
+                                                           .ToList();
+
+            switch(columnIndx)
+            {
+                case 2:
+                    orderModels = order == "asc" ? orderModels.OrderBy(o => o.CustomerName).ToList() : orderModels.OrderByDescending(o => o.CustomerName).ToList();
+                    break;
+                case 3:
+                    orderModels = order == "asc" ? orderModels.OrderBy(o => o.ShippingAddress).ToList() : orderModels.OrderByDescending(o => o.ShippingAddress).ToList();
+                    break;
+                case 4:
+                    orderModels = order == "asc" ? orderModels.OrderBy(o => o.DeliveryDate).ToList() : orderModels.OrderByDescending(o => o.DeliveryDate).ToList();
+                    break;
+                case 6:
+                    orderModels = order == "asc" ? orderModels.OrderBy(o => o.Status).ToList() : orderModels.OrderByDescending(o => o.Status).ToList();
+                    break;
+            }
+            return orderModels;
         }
     }
 }

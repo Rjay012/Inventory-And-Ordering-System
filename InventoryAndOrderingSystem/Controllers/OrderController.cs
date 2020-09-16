@@ -10,6 +10,7 @@ using InventoryAndOrderingSystem.Services.OrderServices;
 using InventoryAndOrderingSystem.Services.ProductServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OECS.Models;
 
 namespace InventoryAndOrderingSystem.Controllers
 {
@@ -42,9 +43,45 @@ namespace InventoryAndOrderingSystem.Controllers
         }
 
         [Authorize(Roles = "Manager")]
-        public IActionResult ListingOrder()
+        public IActionResult RenderListingOrderTable()
         {
-            return PartialView("Partials/Tables/_OrderList", _orderService.ListingOrder());
+            return PartialView("Partials/Tables/_OrderList");
+        }
+
+        [Authorize(Roles = "Manager")]
+        public IActionResult ListingOrder([Bind]DataTableParam param)
+        {
+            if(param == null)
+            {
+                return BadRequest();
+            }
+
+            if(ModelState.IsValid)
+            {
+                var order = _orderService.ListingOrder(param.iSortCol_0, param.sSortDir_0);
+
+                if(!String.IsNullOrEmpty(param.sSearch))
+                {
+                    order = order.Where(o => o.CustomerName.Contains(param.sSearch) ||
+                                             o.ShippingAddress.Contains(param.sSearch) ||
+                                             o.Status.Contains(param.sSearch) ||
+                                             o.ProductName.Contains(param.sSearch))
+                                  .ToList();
+                }
+
+                var result = order.Skip(param.iDisplayStart)
+                                  .Take(param.iDisplayLength)
+                                  .ToList();
+                return Json(new
+                {
+                    aaData = result,
+                    param.sEcho,
+                    iTotalRecords = order.Count(),
+                    iTotalDisplayRecords = order.Count()
+                });
+            }
+
+            return NotFound();
         }
 
         [Authorize(Roles = "Manager")]
